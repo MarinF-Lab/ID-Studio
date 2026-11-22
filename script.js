@@ -73,6 +73,8 @@ function navigateTo(id, pushState = true) {
   // Special: start counters on "inicio"
   if (id === 'inicio') startCounters();
 
+  if (window.heroParticlesSync) window.heroParticlesSync();
+
   setTimeout(() => { isTransitioning = false; }, 420);
 }
 window.navigateTo = navigateTo;
@@ -219,6 +221,132 @@ document.getElementById('contactForm').addEventListener('submit', e => {
   }, 1200);
 });
 
+// ── Hero: red de partículas ──
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE_POINTER = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+(function heroParticles() {
+  const canvas = document.getElementById('heroCanvas');
+  const hero   = document.getElementById('inicio');
+  if (!canvas || !hero || REDUCED) return;
+  const ctx = canvas.getContext('2d');
+  let w = 0, h = 0, dpr = 1, particles = [], colors = {}, raf = null;
+  const mouse = { x: -9999, y: -9999 };
+
+  function readColors() {
+    const cs = getComputedStyle(document.documentElement);
+    colors.a = cs.getPropertyValue('--accent').trim() || '#F95A8A';
+    colors.b = cs.getPropertyValue('--globe-blue').trim() || '#8FAFC0';
+    colors.light = document.documentElement.getAttribute('data-theme') === 'light';
+  }
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = hero.clientWidth; h = hero.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.round(Math.min(90, Math.max(28, (w * h) / 16000)));
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35,
+      r: Math.random() * 1.6 + .6,
+      c: Math.random() < .35 ? 'a' : 'b',
+    }));
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, w, h);
+    const link = 130, linkSq = link * link, mouseR = 170;
+    const alphaBase = colors.light ? .28 : .22;
+    for (const p of particles) {
+      // atracción suave hacia el cursor
+      const mdx = mouse.x - p.x, mdy = mouse.y - p.y;
+      const md = Math.hypot(mdx, mdy);
+      if (md < mouseR && md > 1) { p.vx += (mdx / md) * .012; p.vy += (mdy / md) * .012; }
+      p.vx *= .992; p.vy *= .992;
+      const sp = Math.hypot(p.vx, p.vy);
+      if (sp < .12) { p.vx += (Math.random() - .5) * .04; p.vy += (Math.random() - .5) * .04; }
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -10) p.x = w + 10; else if (p.x > w + 10) p.x = -10;
+      if (p.y < -10) p.y = h + 10; else if (p.y > h + 10) p.y = -10;
+    }
+    ctx.lineWidth = 1;
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x, dy = p.y - q.y, d2 = dx * dx + dy * dy;
+        if (d2 < linkSq) {
+          ctx.globalAlpha = alphaBase * (1 - d2 / linkSq);
+          ctx.strokeStyle = colors.b;
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+        }
+      }
+      const md = Math.hypot(mouse.x - p.x, mouse.y - p.y);
+      if (md < mouseR) {
+        ctx.globalAlpha = .5 * (1 - md / mouseR);
+        ctx.strokeStyle = colors.a;
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+      }
+    }
+    for (const p of particles) {
+      ctx.globalAlpha = colors.light ? .6 : .75;
+      ctx.fillStyle = colors[p.c];
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    raf = requestAnimationFrame(frame);
+  }
+
+  function shouldRun() { return currentSection === 'inicio' && !document.hidden; }
+  function start() { if (!raf && shouldRun()) raf = requestAnimationFrame(frame); }
+  function stop()  { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+  window.heroParticlesSync = () => (shouldRun() ? start() : stop());
+
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+  });
+  hero.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+  document.addEventListener('visibilitychange', window.heroParticlesSync);
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 150); });
+  new MutationObserver(readColors).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  readColors(); resize(); start();
+})();
+
+// ── Hero: isotipo con inclinación 3D ──
+(function heroTilt() {
+  const box = document.getElementById('heroTilt');
+  const area = document.getElementById('inicio');
+  if (!box || !area || REDUCED || !FINE_POINTER) return;
+  area.addEventListener('pointermove', e => {
+    const r = box.getBoundingClientRect();
+    const nx = (e.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2);
+    const ny = (e.clientY - (r.top + r.height / 2)) / (window.innerHeight / 2);
+    box.style.setProperty('--ry', (Math.max(-1, Math.min(1, nx)) * 12).toFixed(2) + 'deg');
+    box.style.setProperty('--rx', (Math.max(-1, Math.min(1, -ny)) * 10).toFixed(2) + 'deg');
+  });
+  area.addEventListener('pointerleave', () => {
+    box.style.setProperty('--rx', '0deg'); box.style.setProperty('--ry', '0deg');
+  });
+})();
+
+// ── Tarjetas: foco de luz que sigue el cursor ──
+if (FINE_POINTER) {
+  document.querySelectorAll('.service-card, .product-card').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+}
+
+// ── Año actual en el pie ──
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
 // ── Init ──
 (function init() {
   bindNav();
@@ -237,4 +365,5 @@ document.getElementById('contactForm').addEventListener('submit', e => {
 
   if (startSection === 'inicio') startCounters();
   if (startSection === 'nosotros') animateTerminal();
+  if (window.heroParticlesSync) window.heroParticlesSync();
 })();

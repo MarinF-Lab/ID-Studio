@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ID Workshop — Software Studio</title>
-  <meta name="description" content="ID Workshop Software Studio: creamos, vendemos y mantenemos softwares y páginas web a medida para tu empresa." />
+  <title>ID Studio — Technology Services</title>
+  <meta name="description" content="ID Studio — Technology Services: creamos, vendemos y mantenemos softwares y páginas web a medida para tu empresa." />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -23,11 +23,11 @@
   <header class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#inicio" class="nav-logo" data-target="inicio">
-        <img class="nav-isotipo logo-dark"  src="assets/images/isotipo-dark.png"  alt="ID Workshop" />
-        <img class="nav-isotipo logo-light" src="assets/images/isotipo-light.png" alt="ID Workshop" />
+        <img class="nav-isotipo logo-dark"  src="assets/images/isotipo-dark.png"  alt="ID Studio" />
+        <img class="nav-isotipo logo-light" src="assets/images/isotipo-light.png" alt="ID Studio" />
         <div class="nav-wordmark">
-          <div class="wm-name"><span class="wm-id">ID</span> <span class="wm-workshop">Workshop</span></div>
-          <div class="wm-sub">Software Studio</div>
+          <div class="wm-name"><span class="wm-id">ID</span> <span class="wm-studio">Studio</span></div>
+          <div class="wm-sub">Technology Services</div>
         </div>
       </a>
       <nav class="nav-links" id="navLinks">
@@ -65,13 +65,15 @@
 
   <!-- ── SECCIÓN 1: INICIO ── -->
   <section class="page-section hero-section" id="inicio">
+    <div class="hero-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
     <div class="hero-content">
       <div class="hero-badge">
-        <span class="terminal-prompt">&gt;_</span> Software Studio
+        <span class="terminal-prompt">&gt;_</span> Technology Services
       </div>
       <h1 class="hero-title">
-        Soluciones digitales<br />
-        <span class="gradient-text">a tu medida</span>
+        <span class="line"><span>Soluciones digitales</span></span>
+        <span class="line"><span class="gradient-text">a tu medida</span></span>
       </h1>
       <p class="hero-sub">
         Creamos, vendemos y mantenemos softwares y páginas web profesionales.<br />
@@ -90,9 +92,9 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="globe-container">
-        <img class="hero-logo-img logo-dark"  src="assets/images/isotipo-dark.png"  alt="ID Workshop" />
-        <img class="hero-logo-img logo-light" src="assets/images/isotipo-light.png" alt="ID Workshop" />
+      <div class="globe-container" id="heroTilt">
+        <img class="hero-logo-img logo-dark"  src="assets/images/isotipo-dark.png"  alt="ID Studio" />
+        <img class="hero-logo-img logo-light" src="assets/images/isotipo-light.png" alt="ID Studio" />
       </div>
       <div class="floating-card card-f1"><span class="fc-icon">⚡</span><span>Alto rendimiento</span></div>
       <div class="floating-card card-f2"><span class="fc-icon">🔒</span><span>Seguro</span></div>
@@ -148,6 +150,7 @@
         <span class="section-tag">Catálogo</span>
         <h2>Nuestros <span class="gradient-text">Productos</span></h2>
         <p>Software listo para usar. Licencias, suscripciones y personalización disponibles.</p>
+        <span class="demo-note">Vista previa · Catálogo de ejemplo, pronto nuestros proyectos reales</span>
       </div>
       <div class="products-filter">
         <button class="filter-btn active" data-filter="all">Todos</button>
@@ -268,7 +271,7 @@
       <div class="about-text animate-item">
         <span class="section-tag">Quiénes somos</span>
         <h2>Construimos <span class="gradient-text">tecnología</span> con propósito</h2>
-        <p>ID Workshop es un estudio de software dedicado a crear soluciones digitales que realmente resuelven problemas. Combinamos diseño, ingeniería y estrategia para entregar productos que duran.</p>
+        <p>ID Studio es un estudio de tecnología dedicado a crear soluciones digitales que realmente resuelven problemas. Combinamos diseño, ingeniería y estrategia para entregar productos que duran.</p>
         <p>Ya sea que necesites automatizar un proceso, lanzar tu negocio en línea, o mantener y escalar una plataforma existente — estamos aquí.</p>
         <div class="about-features">
           <div class="about-feature"><span class="af-icon">✓</span><div><strong>Entrega puntual</strong><span>Cumplimos plazos con metodologías ágiles</span></div></div>
@@ -288,11 +291,11 @@
             <span class="tb-dot dot-red"></span>
             <span class="tb-dot dot-yellow"></span>
             <span class="tb-dot dot-green"></span>
-            <span class="tb-title">id-workshop ~ terminal</span>
+            <span class="tb-title">id-studio ~ terminal</span>
           </div>
           <div class="terminal-body" id="terminalBody">
             <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></div>
-            <div class="t-line t-output">ID Workshop Software Studio</div>
+            <div class="t-line t-output">ID Studio — Technology Services</div>
             <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cat servicios.txt</span></div>
             <div class="t-line t-output">→ Desarrollo de software a medida</div>
             <div class="t-line t-output">→ Páginas web profesionales</div>
@@ -314,8 +317,8 @@
         <h2>¿Listo para <span class="gradient-text">empezar</span>?</h2>
         <p>Cuéntanos tu proyecto y te responderemos en menos de 24 horas con una propuesta inicial sin costo.</p>
         <div class="contact-details">
-          <a href="mailto:contacto@idworkshop.cl" class="contact-item">
-            <span class="ci-icon">✉</span><span>contacto@idworkshop.cl</span>
+          <a href="mailto:id.studio.tecserv@gmail.com" class="contact-item">
+            <span class="ci-icon">✉</span><span>id.studio.tecserv@gmail.com</span>
           </a>
           <div class="contact-item">
             <span class="ci-icon">📍</span><span>Chile — Atención remota a todo el país</span>
@@ -326,14 +329,14 @@
         </div>
         <div class="contact-footer-brand">
           <div class="footer-logo">
-            <img class="footer-isotipo logo-dark"  src="assets/images/isotipo-dark.png"  alt="ID Workshop" />
-            <img class="footer-isotipo logo-light" src="assets/images/isotipo-light.png" alt="ID Workshop" />
+            <img class="footer-isotipo logo-dark"  src="assets/images/isotipo-dark.png"  alt="ID Studio" />
+            <img class="footer-isotipo logo-light" src="assets/images/isotipo-light.png" alt="ID Studio" />
             <div class="nav-wordmark">
-              <div class="wm-name"><span class="wm-id">ID</span> <span class="wm-workshop">Workshop</span></div>
-              <div class="wm-sub">Software Studio</div>
+              <div class="wm-name"><span class="wm-id">ID</span> <span class="wm-studio">Studio</span></div>
+              <div class="wm-sub">Technology Services</div>
             </div>
           </div>
-          <p>© 2025 ID Workshop Software Studio</p>
+          <p>© <span id="year">2026</span> ID Studio — Technology Services</p>
         </div>
       </div>
       <form class="contact-form animate-item" id="contactForm" style="--delay:.15s">
