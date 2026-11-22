@@ -1,0 +1,23 @@
+# Crea una URL de vista previa en Firebase Hosting para cada pull request.
+name: Vista previa en Firebase Hosting
+
+on: pull_request
+
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  deploy_preview:
+    # Los PR desde forks no tienen acceso a los secretos
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ID_STUDIO_53F5A }}
+          projectId: id-studio-53f5a
+          expires: 7d
