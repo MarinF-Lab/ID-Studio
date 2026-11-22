@@ -890,3 +890,56 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
   .hero-canvas { display: none; }
 }
+
+/* ═══════════════════════════════════════════
+   FASE 2 · PORTAFOLIO
+   ═══════════════════════════════════════════ */
+.filter-count {
+  margin-left: 7px;
+  font-family: 'JetBrains Mono', monospace; font-size: .68rem;
+  opacity: .7;
+}
+.project-status {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace; font-size: .66rem; font-weight: 600;
+  background: rgba(0,0,0,.25); color: #fff;
+  padding: 3px 10px; border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+.project-status::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: currentColor;
+}
+.status-live::before { background: #4ade80; box-shadow: 0 0 0 0 rgba(74,222,128,.6); animation: livePulse 2s infinite; }
+.status-beta::before { background: #fbbf24; }
+.status-dev::before  { background: #cbd5e1; }
+@keyframes livePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(74,222,128,.55); }
+  70%  { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+  100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+}
+.project-tagline {
+  display: block;
+  font-family: 'JetBrains Mono', monospace; font-size: .66rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 4px;
+}
+#portfolioGrid .product-footer { justify-content: flex-start; }
+#portfolioGrid .btn-product { display: inline-flex; align-items: center; gap: 6px; }
+.btn-code {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 7px;
+  font-size: .78rem; font-weight: 600;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+.btn-code svg { width: 14px; height: 14px; }
+.btn-code:hover { color: var(--text); border-color: var(--globe-blue); }
+.product-header { transition: filter var(--transition); }
+.product-card:hover .product-header { filter: saturate(1.15) brightness(1.05); }
+.product-card:hover .product-icon-wrap { transform: rotate(-6deg) scale(1.06); }
+.product-icon-wrap { transition: transform .35s cubic-bezier(.16,1,.3,1); }
+@media (prefers-reduced-motion: reduce) {
+  .status-live::before { animation: none; }
+}

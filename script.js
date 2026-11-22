@@ -21,7 +21,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
 });
 
 // ── Section order ──
-const SECTIONS = ['inicio', 'servicios', 'productos', 'nosotros', 'contacto'];
+const SECTIONS = ['inicio', 'servicios', 'portafolio', 'nosotros', 'contacto'];
 let currentSection = 'inicio';
 let isTransitioning = false;
 
@@ -135,8 +135,6 @@ document.addEventListener('keydown', e => {
   } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
     e.preventDefault();
     if (idx > 0) navigateTo(SECTIONS[idx - 1]);
-  } else if (e.key === 'Escape') {
-    closeModal();
   }
 });
 
@@ -169,41 +167,81 @@ function animateTerminal() {
   });
 }
 
-// ── Products filter ──
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    document.querySelectorAll('.product-card[data-category]').forEach(card => {
-      const cats = card.dataset.category || '';
-      card.classList.toggle('hidden', filter !== 'all' && !cats.includes(filter));
+// ── Portafolio (datos en projects.js) ──
+const ICONS = {
+  ledger:  '<path d="M8 6h20a4 4 0 014 4v22H12a4 4 0 01-4-4V6z"/><path d="M14 14h12M14 20h12M14 26h7"/>',
+  layers:  '<path d="M20 6l14 7-14 7-14-7 14-7z"/><path d="M6 20l14 7 14-7M6 27l14 7 14-7"/>',
+  calendar:'<rect x="6" y="9" width="28" height="25" rx="3"/><path d="M6 16h28M13 5v7M27 5v7M13 23l4 4 8-8"/>',
+  id:      '<rect x="5" y="9" width="30" height="22" rx="3"/><circle cx="14" cy="19" r="3.5"/><path d="M9 27c1-3 9-3 10 0M23 16h7M23 21h7"/>',
+  chart:   '<path d="M6 34h28"/><path d="M11 28v-8M18 28V14M25 28v-11M32 28V9"/>',
+  box:     '<path d="M20 5l14 7v16l-14 7-14-7V12l14-7z"/><path d="M6 12l14 7 14-7M20 19v16"/>',
+  flower:  '<circle cx="20" cy="15" r="3"/><path d="M20 12c0-5 6-5 5 0M23 15c5 0 5 6 0 5M20 18c0 5-6 5-5 0M17 15c-5 0-5-6 0-5"/><path d="M20 18v17M20 28c-3-4-8-3-8-3M20 25c3-4 7-3 7-3"/>',
+  bag:     '<path d="M9 14h22l-2 20H11L9 14z"/><path d="M15 14v-3a5 5 0 0110 0v3"/>',
+  globe:   '<circle cx="20" cy="20" r="14"/><path d="M6 20h28M20 6c4 4 6 9 6 14s-2 10-6 14c-4-4-6-9-6-14s2-10 6-14z"/>',
+  palette: '<path d="M20 6a14 14 0 100 28c2 0 3-1.5 3-3 0-2-2-2.5-2-4.5 0-1.5 1-2.5 3-2.5h4c3 0 6-2.5 6-6C34 11 28 6 20 6z"/><circle cx="13" cy="18" r="1.6"/><circle cx="18" cy="12" r="1.6"/><circle cx="25" cy="12" r="1.6"/>',
+  gear:    '<circle cx="20" cy="20" r="5"/><path d="M20 5v5M20 30v5M5 20h5M30 20h5M9.4 9.4l3.5 3.5M27.1 27.1l3.5 3.5M9.4 30.6l3.5-3.5M27.1 12.9l3.5-3.5"/>',
+};
+const STATUS = { live: 'En producción', beta: 'Beta', dev: 'En desarrollo' };
+
+function esc(str) {
+  return String(str).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+function projectCard(p, i) {
+  const live = p.url
+    ? `<a class="btn-product" href="${esc(p.url)}" target="_blank" rel="noopener">Ver en vivo <span aria-hidden="true">↗</span></a>`
+    : `<span class="btn-product btn-coming">Próximamente</span>`;
+  const code = p.repo
+    ? `<a class="btn-code" href="${esc(p.repo)}" target="_blank" rel="noopener" aria-label="Código de ${esc(p.name)} en GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 00-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0C17.3 4.8 18.3 5.1 18.3 5.1c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0012 .5z"/></svg>Código</a>`
+    : '';
+  return `
+    <article class="product-card animate-item" data-category="${esc(p.category)}" style="--delay:${(i * 0.05).toFixed(2)}s">
+      <div class="product-header" style="--card-color:${esc(p.color)}">
+        <div class="product-icon-wrap"><svg viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[p.icon] || ICONS.globe}</svg></div>
+        <span class="project-status status-${esc(p.status)}">${STATUS[p.status] || ''}</span>
+      </div>
+      <div class="product-body">
+        <span class="project-tagline">${esc(p.tagline)}</span>
+        <h3>${esc(p.name)}</h3>
+        <p>${esc(p.description)}</p>
+        <div class="product-meta">${p.stack.map(t => `<span class="product-tag">${esc(t)}</span>`).join('')}</div>
+      </div>
+      <div class="product-footer">${live}${code}</div>
+    </article>`;
+}
+
+(function renderPortfolio() {
+  const grid   = document.getElementById('portfolioGrid');
+  const filter = document.getElementById('portfolioFilter');
+  const cta    = document.getElementById('portfolioCta');
+  const list   = window.PROJECTS || [];
+  const cats   = window.PROJECT_CATEGORIES || {};
+  if (!grid || !filter) return;
+
+  grid.insertAdjacentHTML('afterbegin', list.map(projectCard).join(''));
+  if (cta) { cta.classList.add('animate-item'); cta.style.setProperty('--delay', (list.length * 0.05).toFixed(2) + 's'); }
+
+  const used = Object.keys(cats).filter(k => list.some(p => p.category === k));
+  const btn = (key, label, count, active) =>
+    `<button class="filter-btn${active ? ' active' : ''}" data-filter="${key}" role="tab" aria-selected="${active}">${label}<span class="filter-count">${count}</span></button>`;
+  filter.innerHTML = btn('all', 'Todos', list.length, true) +
+    used.map(k => btn(k, cats[k], list.filter(p => p.category === k).length, false)).join('');
+
+  filter.addEventListener('click', e => {
+    const b = e.target.closest('.filter-btn');
+    if (!b) return;
+    filter.querySelectorAll('.filter-btn').forEach(x => {
+      const on = x === b;
+      x.classList.toggle('active', on);
+      x.setAttribute('aria-selected', on);
+    });
+    const f = b.dataset.filter;
+    grid.querySelectorAll('.product-card[data-category]').forEach(card => {
+      const c = card.dataset.category;
+      card.classList.toggle('hidden', f !== 'all' && c !== f && c !== 'all');
     });
   });
-});
-
-// ── Modal ──
-const modalData = {
-  'InvoiceFlow':   'Sistema completo de facturación electrónica y cotizaciones. Genera PDFs profesionales, gestiona tu cartera de clientes, controla cuentas por cobrar y obtén reportes financieros automáticos. Compatible con SII Chile.',
-  'TaskBoard Pro': 'Gestión de proyectos y equipos con tableros Kanban, seguimiento de tiempos, asignación de tareas, notificaciones por correo y dashboard de productividad. Ideal para equipos de 1 a 50 personas.',
-  'WebPresence':   'Plataforma todo-en-uno para tu presencia digital corporativa. Editor drag & drop, blog integrado, formularios de contacto, Google Analytics, optimización SEO y hosting incluido.',
-  'StockMaster':   'Control de inventario en tiempo real con lectura de códigos QR/barras, alertas de stock mínimo, trazabilidad por lote, múltiples bodegas y reportes de rotación de productos.',
-};
-const overlay    = document.getElementById('modalOverlay');
-const modalTitle = document.getElementById('modalTitle');
-const modalBody  = document.getElementById('modalBody');
-
-function openModal(name) {
-  modalTitle.textContent = name;
-  modalBody.textContent  = modalData[name] || 'Contáctanos para más información.';
-  overlay.classList.add('open');
-}
-function closeModal() {
-  overlay.classList.remove('open');
-}
-window.openModal  = openModal;
-window.closeModal = closeModal;
-overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+})();
 
 // ── Contact form ──
 document.getElementById('contactForm').addEventListener('submit', e => {

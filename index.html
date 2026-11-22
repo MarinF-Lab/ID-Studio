@@ -33,7 +33,7 @@
       <nav class="nav-links" id="navLinks">
         <a href="#inicio"    data-target="inicio">Inicio</a>
         <a href="#servicios" data-target="servicios">Servicios</a>
-        <a href="#productos" data-target="productos">Productos</a>
+        <a href="#portafolio" data-target="portafolio">Portafolio</a>
         <a href="#nosotros"  data-target="nosotros">Nosotros</a>
         <a href="#contacto"  data-target="contacto" class="btn-nav">Contáctanos</a>
       </nav>
@@ -58,7 +58,7 @@
   <nav class="side-dots" id="sideDots" aria-label="Secciones">
     <button class="dot" data-target="inicio"    title="Inicio"></button>
     <button class="dot" data-target="servicios" title="Servicios"></button>
-    <button class="dot" data-target="productos" title="Productos"></button>
+    <button class="dot" data-target="portafolio" title="Portafolio"></button>
     <button class="dot" data-target="nosotros"  title="Nosotros"></button>
     <button class="dot" data-target="contacto"  title="Contacto"></button>
   </nav>
@@ -80,7 +80,7 @@
         Tecnología que impulsa tu negocio.
       </p>
       <div class="hero-cta">
-        <button class="btn btn-primary" data-target="productos">Ver productos</button>
+        <button class="btn btn-primary" data-target="portafolio">Ver portafolio</button>
         <button class="btn btn-outline" data-target="contacto">Hablemos</button>
       </div>
       <div class="hero-stats">
@@ -144,123 +144,26 @@
   </section>
 
   <!-- ── SECCIÓN 3: PRODUCTOS ── -->
-  <section class="page-section products-section" id="productos">
+  <section class="page-section products-section" id="portafolio">
     <div class="section-inner">
       <div class="section-header">
-        <span class="section-tag">Catálogo</span>
-        <h2>Nuestros <span class="gradient-text">Productos</span></h2>
-        <p>Software listo para usar. Licencias, suscripciones y personalización disponibles.</p>
-        <span class="demo-note">Vista previa · Catálogo de ejemplo, pronto nuestros proyectos reales</span>
+        <span class="section-tag">Portafolio</span>
+        <h2>Proyectos <span class="gradient-text">reales</span></h2>
+        <p>Apps, plataformas y sitios que hemos diseñado, construido y puesto en producción.</p>
       </div>
-      <div class="products-filter">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="desktop">Desktop</button>
-        <button class="filter-btn" data-filter="web">Web</button>
-        <button class="filter-btn" data-filter="gestion">Gestión</button>
-      </div>
-      <div class="products-grid" id="productsGrid">
-
-        <div class="product-card animate-item" data-category="gestion">
-          <div class="product-header" style="--card-color:#e83e6c">
-            <div class="product-icon-wrap">
-              <svg viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="3" stroke="white" stroke-width="2"/><path d="M10 18h20M10 23h12" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="30" cy="28" r="7" fill="#e83e6c" stroke="white" stroke-width="1.5"/><path d="M27.5 28h5M30 25.5v5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
-            <span class="product-version">v2.1</span>
-          </div>
-          <div class="product-body">
-            <h3>InvoiceFlow</h3>
-            <p>Sistema de facturación y cotizaciones con generación de PDF, control de clientes y reportes automáticos.</p>
-            <div class="product-meta"><span class="product-tag">Facturación</span><span class="product-tag">PDF</span><span class="product-tag">CRM</span></div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price"><span class="price-label">Desde</span><span class="price-amount">$49.990</span><span class="price-period">/mes</span></div>
-            <button class="btn-product" onclick="openModal('InvoiceFlow')">Ver más</button>
-          </div>
-        </div>
-
-        <div class="product-card animate-item" data-category="desktop web" style="--delay:.05s">
-          <div class="product-header" style="--card-color:#4a6fa5">
-            <div class="product-icon-wrap">
-              <svg viewBox="0 0 40 40" fill="none"><rect x="4" y="6" width="32" height="28" rx="3" stroke="white" stroke-width="2"/><path d="M4 14h32" stroke="white" stroke-width="2"/><circle cx="10" cy="10" r="1.5" fill="white"/><circle cx="16" cy="10" r="1.5" fill="white"/><circle cx="22" cy="10" r="1.5" fill="white"/><path d="M10 22l4 4 10-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <span class="product-version">v1.4</span>
-          </div>
-          <div class="product-body">
-            <h3>TaskBoard Pro</h3>
-            <p>Gestor de tareas y proyectos tipo Kanban con seguimiento de tiempos, notificaciones y reportes de equipo.</p>
-            <div class="product-meta"><span class="product-tag">Kanban</span><span class="product-tag">Equipo</span><span class="product-tag">Reportes</span></div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price"><span class="price-label">Desde</span><span class="price-amount">$29.990</span><span class="price-period">/mes</span></div>
-            <button class="btn-product" onclick="openModal('TaskBoard Pro')">Ver más</button>
-          </div>
-        </div>
-
-        <div class="product-card animate-item" data-category="web" style="--delay:.1s">
-          <div class="product-header" style="--card-color:#2ecc71">
-            <div class="product-icon-wrap">
-              <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="white" stroke-width="2"/><path d="M20 6c0 0-6 5-6 14s6 14 6 14M20 6c0 0 6 5 6 14s-6 14-6 14M6 20h28" stroke="white" stroke-width="2"/><path d="M8 14h24M8 26h24" stroke="white" stroke-width="1.5"/></svg>
-            </div>
-            <span class="product-version">v3.0</span>
-          </div>
-          <div class="product-body">
-            <h3>WebPresence</h3>
-            <p>Plataforma para crear y gestionar tu presencia web corporativa con editor visual, blog y analítica integrada.</p>
-            <div class="product-meta"><span class="product-tag">CMS</span><span class="product-tag">Blog</span><span class="product-tag">Analytics</span></div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price"><span class="price-label">Desde</span><span class="price-amount">$39.990</span><span class="price-period">/mes</span></div>
-            <button class="btn-product" onclick="openModal('WebPresence')">Ver más</button>
-          </div>
-        </div>
-
-        <div class="product-card animate-item" data-category="desktop gestion" style="--delay:.15s">
-          <div class="product-header" style="--card-color:#f39c12">
-            <div class="product-icon-wrap">
-              <svg viewBox="0 0 40 40" fill="none"><rect x="6" y="6" width="28" height="28" rx="3" stroke="white" stroke-width="2"/><path d="M12 20h16M12 14h10M12 26h8" stroke="white" stroke-width="2" stroke-linecap="round"/><rect x="24" y="22" width="10" height="8" rx="1.5" fill="#f39c12" stroke="white" stroke-width="1.5"/></svg>
-            </div>
-            <span class="product-version">v1.0</span>
-          </div>
-          <div class="product-body">
-            <h3>StockMaster</h3>
-            <p>Control de inventario y bodega con alertas de stock mínimo, trazabilidad de productos y reportes en tiempo real.</p>
-            <div class="product-meta"><span class="product-tag">Inventario</span><span class="product-tag">Alertas</span><span class="product-tag">Reportes</span></div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price"><span class="price-label">Desde</span><span class="price-amount">$59.990</span><span class="price-period">/mes</span></div>
-            <button class="btn-product" onclick="openModal('StockMaster')">Ver más</button>
-          </div>
-        </div>
-
-        <div class="product-card animate-item" data-category="web gestion" style="--delay:.2s">
-          <div class="product-header" style="--card-color:#9b59b6">
-            <div class="product-icon-wrap">
-              <svg viewBox="0 0 40 40" fill="none"><path d="M20 4l14 8v16l-14 8L6 28V12L20 4z" stroke="white" stroke-width="2"/><path d="M20 4v28M6 12l14 8 14-8" stroke="white" stroke-width="1.5"/></svg>
-            </div>
-            <span class="product-version">Beta</span>
-          </div>
-          <div class="product-body">
-            <h3>HRConnect</h3>
-            <p>Sistema de RRHH para gestión de empleados, vacaciones, asistencia y liquidaciones de sueldo simplificadas.</p>
-            <div class="product-meta"><span class="product-tag">RRHH</span><span class="product-tag">Asistencia</span><span class="product-tag">Sueldos</span></div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price"><span class="price-label">Próximamente</span><span class="price-amount">—</span></div>
-            <button class="btn-product btn-coming" disabled>En desarrollo</button>
-          </div>
-        </div>
-
-        <div class="product-card product-custom animate-item" data-category="all" style="--delay:.25s">
+      <div class="products-filter" id="portfolioFilter" role="tablist" aria-label="Filtrar proyectos"></div>
+      <div class="products-grid" id="portfolioGrid">
+        <!-- Las tarjetas se generan desde projects.js -->
+        <div class="product-card product-custom" data-category="all" id="portfolioCta">
           <div class="product-custom-inner">
             <div class="custom-icon">
               <svg viewBox="0 0 48 48" fill="none"><path d="M24 4l4 8h8l-6.5 5 2.5 8L24 20l-8 5 2.5-8L12 12h8L24 4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 32h28M10 38h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
-            <h3>¿Necesitas algo específico?</h3>
-            <p>Desarrollamos software completamente a medida según tus requerimientos.</p>
+            <h3>¿Tu proyecto es el siguiente?</h3>
+            <p>Cuéntanos tu idea y la convertimos en una app o web a tu medida.</p>
             <button class="btn btn-primary" data-target="contacto">Solicitar cotización</button>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -377,15 +280,7 @@
   </section>
 
   <!-- ── MODAL ── -->
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
-    <div class="modal" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <h2 id="modalTitle"></h2>
-      <p id="modalBody"></p>
-      <button class="btn btn-primary" onclick="closeModal(); navigateTo('contacto')">Solicitar información</button>
-    </div>
-  </div>
-
+  <script src="projects.js"></script>
   <script src="script.js"></script>
   <script type="module" src="firebase.js"></script>
 </body>
