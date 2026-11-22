@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "id-studio-53f5a",
     "public": ".",
     "ignore": [
       "firebase.json",
