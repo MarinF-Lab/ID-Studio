@@ -15,7 +15,7 @@
   --nav:68px;
   --shadow: 0 1px 1px rgba(2,6,16,.30), 0 calc(4px + 10px*var(--d,.5)) calc(10px + 26px*var(--d,.5)) rgba(2,6,16,.28), 0 calc(16px + 30px*var(--d,.5)) calc(40px + 60px*var(--d,.5)) rgba(2,6,16,.32);
 }
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow:hidden}
@@ -245,6 +245,8 @@ em.hl{font-style:normal;color:var(--signal)}
 .dcard small{color:var(--ink-3);font-size:13px}
 .track-wrap{margin-top:34px}
 .track{position:relative;height:56px;touch-action:pan-y;cursor:pointer;user-select:none;-webkit-user-select:none}
+.track:focus{outline:none}
+.track:focus-visible{outline:2px solid var(--steel);outline-offset:6px;border-radius:10px}
 .track .rail{position:absolute;left:0;right:0;top:27px;height:2px;background:var(--line);border-radius:2px}
 .track .fill{position:absolute;left:0;top:27px;height:2px;background:var(--signal);border-radius:2px}
 .track .stop{position:absolute;top:22px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--bg-4);transition:background-color .3s}
