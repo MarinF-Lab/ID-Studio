@@ -1,287 +1,268 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>ID Studio — Technology Services</title>
-  <meta name="description" content="ID Studio — Technology Services: creamos, vendemos y mantenemos softwares y páginas web a medida para tu empresa." />
-  <link rel="icon" href="favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-  <link rel="manifest" href="site.webmanifest" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="description" content="ID Studio — Technology Services: diseñamos, construimos y mantenemos apps, plataformas y webs a medida en Chile.">
+  <meta name="theme-color" content="#0A1120">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#inicio" data-go="0" aria-label="ID Studio, inicio"><img src="assets/images/isotipo-320.webp" alt="">ID <i>STUDIO</i></a>
+    <nav class="nav-links" aria-label="Escenas">
+      <a href="#inicio" data-go="0">Inicio</a>
+      <a href="#servicios" data-go="1">Servicios</a>
+      <a href="#portafolio" data-go="2">Portafolio</a>
+      <a href="#proceso" data-go="3">Proceso</a>
+      <a href="#contacto" data-go="4">Contacto</a>
+    </nav>
+    <a class="btn btn-primary" href="#contacto" data-go="4">Hablemos</a>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
 
-  <!-- Fondo de cuadrícula global (fijo) -->
-  <div class="global-grid-bg" aria-hidden="true"></div>
+<nav class="dots" id="dots" aria-label="Ir a escena">
+  <button data-go="0"><span>Inicio</span></button>
+  <button data-go="1"><span>Servicios</span></button>
+  <button data-go="2"><span>Portafolio</span></button>
+  <button data-go="3"><span>Proceso</span></button>
+  <button data-go="4"><span>Contacto</span></button>
+</nav>
 
-  <!-- ── NAVBAR ── -->
-  <header class="navbar" id="navbar">
-    <div class="nav-inner">
-      <a href="#inicio" class="nav-logo" data-target="inicio">
-        <img class="nav-isotipo logo-dark"  src="assets/images/isotipo-dark.png"  alt="ID Studio" />
-        <img class="nav-isotipo logo-light" src="assets/images/isotipo-light.png" alt="ID Studio" />
-        <div class="nav-wordmark">
-          <div class="wm-name"><span class="wm-id">ID</span> <span class="wm-studio">Studio</span></div>
-          <div class="wm-sub">Technology Services</div>
-        </div>
-      </a>
-      <nav class="nav-links" id="navLinks">
-        <a href="#inicio"    data-target="inicio">Inicio</a>
-        <a href="#servicios" data-target="servicios">Servicios</a>
-        <a href="#portafolio" data-target="portafolio">Portafolio</a>
-        <a href="#nosotros"  data-target="nosotros">Nosotros</a>
-        <a href="#contacto"  data-target="contacto" class="btn-nav">Contáctanos</a>
-      </nav>
-      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-        <!-- sol: visible en modo oscuro para cambiar a claro -->
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
-          <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <!-- luna: visible en modo claro para cambiar a oscuro -->
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none">
-          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <button class="nav-burger" id="navBurger" aria-label="Menú">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+<div class="hud" aria-hidden="true"><span><b id="hudN">01</b> / 05 · <span id="hudName">Inicio</span></span><span class="hint"><i></i><span>Desliza, usa ↓ o los puntos</span></span></div>
 
-  <!-- ── PUNTOS LATERALES DE NAVEGACIÓN ── -->
-  <nav class="side-dots" id="sideDots" aria-label="Secciones">
-    <button class="dot" data-target="inicio"    title="Inicio"></button>
-    <button class="dot" data-target="servicios" title="Servicios"></button>
-    <button class="dot" data-target="portafolio" title="Portafolio"></button>
-    <button class="dot" data-target="nosotros"  title="Nosotros"></button>
-    <button class="dot" data-target="contacto"  title="Contacto"></button>
-  </nav>
-
-  <!-- ── SECCIÓN 1: INICIO ── -->
-  <section class="page-section hero-section" id="inicio">
-    <div class="hero-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
-    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="terminal-prompt">&gt;_</span> Technology Services
-      </div>
-      <h1 class="hero-title">
-        <span class="line"><span>Soluciones digitales</span></span>
-        <span class="line"><span class="gradient-text">a tu medida</span></span>
-      </h1>
-      <p class="hero-sub">
-        Creamos, vendemos y mantenemos softwares y páginas web profesionales.<br />
-        Tecnología que impulsa tu negocio.
-      </p>
-      <div class="hero-cta">
-        <button class="btn btn-primary" data-target="portafolio">Ver portafolio</button>
-        <button class="btn btn-outline" data-target="contacto">Hablemos</button>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><span class="stat-num" data-target="30">0</span>+<p>Proyectos</p></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num" data-target="15">0</span>+<p>Clientes</p></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num" data-target="5">0</span>+<p>Años de exp.</p></div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="globe-container" id="heroTilt">
-        <img class="hero-logo-img logo-dark"  src="assets/images/isotipo-dark.png"  alt="ID Studio" />
-        <img class="hero-logo-img logo-light" src="assets/images/isotipo-light.png" alt="ID Studio" />
-      </div>
-      <div class="floating-card card-f1"><span class="fc-icon">⚡</span><span>Alto rendimiento</span></div>
-      <div class="floating-card card-f2"><span class="fc-icon">🔒</span><span>Seguro</span></div>
-      <div class="floating-card card-f3"><span class="fc-icon">🌐</span><span>Multiplataforma</span></div>
-    </div>
-    <button class="section-next-btn" data-target="servicios" aria-label="Siguiente sección">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-  </section>
-
-  <!-- ── SECCIÓN 2: SERVICIOS ── -->
-  <section class="page-section services-section" id="servicios">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-tag">Lo que hacemos</span>
-        <h2>Nuestros <span class="gradient-text">Servicios</span></h2>
-        <p>De la idea al producto final. Nos encargamos de todo el ciclo de vida de tu software.</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card animate-item">
-          <div class="service-icon">
-            <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="8" width="40" height="32" rx="4" stroke="currentColor" stroke-width="2.5"/><path d="M14 20l-6 4 6 4M34 20l6 4-6 4M22 30l4-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
-          </div>
-          <h3>Desarrollo de Software</h3>
-          <p>Aplicaciones de escritorio, sistemas de gestión, ERPs, CRMs y herramientas a medida para automatizar y escalar tu negocio.</p>
-          <ul class="service-tags"><li>Desktop</li><li>Web App</li><li>API REST</li><li>Base de datos</li></ul>
+<main>
+<!-- 1 · INICIO -->
+<section class="scene active" id="s-inicio" data-name="Inicio" data-hash="inicio" aria-label="Inicio">
+  <div class="glow t" data-z="0"></div>
+  <div class="inner"><div class="frame">
+    <div class="hero">
+      <div>
+        <div class="eyebrow t" data-z=".2"><b>&gt;_</b> Technology Services · Chile</div>
+        <h1 class="disp t" data-z=".35">Tecnología que <em class="hl">se siente</em> real.</h1>
+        <p class="lead t" data-z=".5">Apps, plataformas y webs a medida. Las diseñamos en detalle, las construimos para durar y las mantenemos en producción.</p>
+        <div class="ctas t" data-z=".6">
+          <button class="btn btn-primary" data-go="2">Ver portafolio <span class="arr">→</span></button>
+          <button class="btn btn-ghost" data-go="4">Cotizar proyecto</button>
         </div>
-        <div class="service-card featured animate-item" style="--delay:.1s">
-          <div class="service-icon">
-            <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="8" width="40" height="28" rx="3" stroke="currentColor" stroke-width="2.5"/><path d="M16 40h16M24 36v4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M12 20h8M12 26h12M28 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <h3>Páginas Web</h3>
-          <p>Desde landing pages hasta e-commerce completos. Diseño moderno, responsive y optimizado para SEO y velocidad de carga.</p>
-          <ul class="service-tags"><li>Landing</li><li>E-commerce</li><li>SEO</li><li>Responsive</li></ul>
-          <span class="featured-badge">Más popular</span>
-        </div>
-        <div class="service-card animate-item" style="--delay:.2s">
-          <div class="service-icon">
-            <svg viewBox="0 0 48 48" fill="none"><path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z" stroke="currentColor" stroke-width="2.5"/><path d="M24 16v8l5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M12 24h4M32 24h4M24 12v4M24 32v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <h3>Mantenimiento</h3>
-          <p>Soporte continuo, actualizaciones de seguridad, corrección de bugs y monitoreo de tus sistemas para garantizar su disponibilidad.</p>
-          <ul class="service-tags"><li>Soporte 24/7</li><li>Updates</li><li>Seguridad</li><li>Monitoreo</li></ul>
+        <div class="try t" data-z=".7">PRUEBA EN LA TERMINAL:
+          <button data-cmd="servicios">servicios</button><button data-cmd="portafolio">portafolio</button><button data-cmd="ayuda">ayuda</button>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ── SECCIÓN 3: PRODUCTOS ── -->
-  <section class="page-section products-section" id="portafolio">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-tag">Portafolio</span>
-        <h2>Proyectos <span class="gradient-text">reales</span></h2>
-        <p>Apps, plataformas y sitios que hemos diseñado, construido y puesto en producción.</p>
-      </div>
-      <div class="products-filter" id="portfolioFilter" role="tablist" aria-label="Filtrar proyectos"></div>
-      <div class="products-grid" id="portfolioGrid">
-        <!-- Las tarjetas se generan desde projects.js -->
-        <div class="product-card product-custom" data-category="all" id="portfolioCta">
-          <div class="product-custom-inner">
-            <div class="custom-icon">
-              <svg viewBox="0 0 48 48" fill="none"><path d="M24 4l4 8h8l-6.5 5 2.5 8L24 20l-8 5 2.5-8L12 12h8L24 4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 32h28M10 38h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-            <h3>¿Tu proyecto es el siguiente?</h3>
-            <p>Cuéntanos tu idea y la convertimos en una app o web a tu medida.</p>
-            <button class="btn btn-primary" data-target="contacto">Solicitar cotización</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SECCIÓN 4: NOSOTROS ── -->
-  <section class="page-section about-section" id="nosotros">
-    <div class="section-inner about-inner">
-      <div class="about-text animate-item">
-        <span class="section-tag">Quiénes somos</span>
-        <h2>Construimos <span class="gradient-text">tecnología</span> con propósito</h2>
-        <p>ID Studio es un estudio de tecnología dedicado a crear soluciones digitales que realmente resuelven problemas. Combinamos diseño, ingeniería y estrategia para entregar productos que duran.</p>
-        <p>Ya sea que necesites automatizar un proceso, lanzar tu negocio en línea, o mantener y escalar una plataforma existente — estamos aquí.</p>
-        <div class="about-features">
-          <div class="about-feature"><span class="af-icon">✓</span><div><strong>Entrega puntual</strong><span>Cumplimos plazos con metodologías ágiles</span></div></div>
-          <div class="about-feature"><span class="af-icon">✓</span><div><strong>Código de calidad</strong><span>Pruebas, documentación y buenas prácticas</span></div></div>
-          <div class="about-feature"><span class="af-icon">✓</span><div><strong>Soporte post-entrega</strong><span>No te dejamos solo después del lanzamiento</span></div></div>
-          <div class="about-feature"><span class="af-icon">✓</span><div><strong>Precios transparentes</strong><span>Sin costos ocultos ni letra chica</span></div></div>
-        </div>
-        <div class="tech-pills">
-          <span>Python</span><span>JavaScript</span><span>React</span><span>Node.js</span>
-          <span>PostgreSQL</span><span>Docker</span><span>PHP</span><span>Vue.js</span>
-          <span>MySQL</span><span>Linux</span><span>REST APIs</span><span>Git</span>
-        </div>
-      </div>
-      <div class="about-visual animate-item" style="--delay:.15s">
-        <div class="terminal-window">
-          <div class="terminal-bar">
-            <span class="tb-dot dot-red"></span>
-            <span class="tb-dot dot-yellow"></span>
-            <span class="tb-dot dot-green"></span>
-            <span class="tb-title">id-studio ~ terminal</span>
-          </div>
-          <div class="terminal-body" id="terminalBody">
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></div>
-            <div class="t-line t-output">ID Studio — Technology Services</div>
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cat servicios.txt</span></div>
-            <div class="t-line t-output">→ Desarrollo de software a medida</div>
-            <div class="t-line t-output">→ Páginas web profesionales</div>
-            <div class="t-line t-output">→ Mantenimiento y soporte</div>
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">echo $MOTTO</span></div>
-            <div class="t-line t-output t-accent">"Código con propósito"</div>
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor">█</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SECCIÓN 5: CONTACTO ── -->
-  <section class="page-section contact-section" id="contacto">
-    <div class="section-inner contact-inner">
-      <div class="contact-info animate-item">
-        <span class="section-tag">Contacto</span>
-        <h2>¿Listo para <span class="gradient-text">empezar</span>?</h2>
-        <p>Cuéntanos tu proyecto y te responderemos en menos de 24 horas con una propuesta inicial sin costo.</p>
-        <div class="contact-details">
-          <a href="mailto:id.studio.tecserv@gmail.com" class="contact-item">
-            <span class="ci-icon">✉</span><span>id.studio.tecserv@gmail.com</span>
-          </a>
-          <div class="contact-item">
-            <span class="ci-icon">📍</span><span>Chile — Atención remota a todo el país</span>
-          </div>
-          <div class="contact-item">
-            <span class="ci-icon">⏱</span><span>Lun–Vie · 9:00 a 18:00 hrs</span>
-          </div>
-        </div>
-        <div class="contact-footer-brand">
-          <div class="footer-logo">
-            <img class="footer-isotipo logo-dark"  src="assets/images/isotipo-dark.png"  alt="ID Studio" />
-            <img class="footer-isotipo logo-light" src="assets/images/isotipo-light.png" alt="ID Studio" />
-            <div class="nav-wordmark">
-              <div class="wm-name"><span class="wm-id">ID</span> <span class="wm-studio">Studio</span></div>
-              <div class="wm-sub">Technology Services</div>
+      <div class="stage-box t" data-z=".9" id="stageBox">
+        <div class="stage" id="stage">
+          <div class="layer card l-app" data-depth=".45" data-rot="-2" aria-hidden="true">
+            <div class="winbar"><i></i><i></i><i></i><span>carnets.app</span></div>
+            <div class="app" style="--c:var(--blue)">
+              <div class="app-side"><div class="logo"></div><span class="on"></span><span></span><span></span><span></span></div>
+              <div class="app-main">
+                <div class="app-title">Carnets</div>
+                <div class="app-sub">Escaneo de carnets · contratistas</div>
+                <div class="kpis"><div><small>Hoy</small><b>56</b></div><div><small>Semana</small><b>197</b></div><div><small>Total</small><b>338</b></div></div>
+                <svg class="spark" viewBox="0 0 300 84" preserveAspectRatio="none"><defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4F86E8" stop-opacity=".55"/><stop offset="1" stop-color="#4F86E8" stop-opacity="0"/></linearGradient></defs><path d="M0 64 L30 52 L60 58 L90 40 L120 46 L150 30 L180 36 L210 22 L240 28 L270 14 L300 18 L300 84 L0 84Z" fill="url(#sg)"/><path d="M0 64 L30 52 L60 58 L90 40 L120 46 L150 30 L180 36 L210 22 L240 28 L270 14 L300 18" fill="none" stroke="#4F86E8" stroke-width="2.5"/></svg>
+              </div>
             </div>
           </div>
-          <p>© <span id="year">2026</span> ID Studio — Technology Services</p>
+          <div class="layer card term l-term" data-depth=".75" data-rot="1.5" id="termCard">
+            <div class="winbar"><i></i><i></i><i></i><span>id-studio — zsh</span></div>
+            <div class="term-out" id="termOut" aria-live="polite"></div>
+            <label class="term-in" for="termIn"><span>$</span><input id="termIn" autocomplete="off" spellcheck="false" placeholder="escribe ayuda y presiona Enter" aria-label="Comando de la terminal"></label>
+          </div>
+          <div class="layer l-iso" data-depth="1" data-rot="0" aria-hidden="true"><img src="assets/images/isotipo-320.webp" alt=""></div>
+          <div class="layer chip l-c1" data-depth="1.05" data-rot="0" aria-hidden="true"><i></i>carnets — online</div>
+          <div class="layer chip l-c2" data-depth=".9" data-rot="-3" aria-hidden="true">deploy <b>✓</b> 14 s</div>
+          <div class="layer tape l-tape" data-depth="1.25" data-rot="-5" aria-hidden="true">★ HECHO EN CHILE</div>
         </div>
       </div>
-      <form class="contact-form animate-item" id="contactForm" style="--delay:.15s">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="servicio">¿Qué necesitas?</label>
-          <select id="servicio" name="servicio">
-            <option value="">Selecciona un servicio...</option>
-            <option value="software">Desarrollo de Software</option>
-            <option value="web">Página Web</option>
-            <option value="mantenimiento">Mantenimiento</option>
-            <option value="producto">Adquirir un Producto</option>
-            <option value="otro">Otro</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-full">
-          <span>Enviar mensaje</span>
-          <svg viewBox="0 0 20 20" fill="none"><path d="M3 10h14M10 3l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+  </div></div>
+</section>
+
+<!-- 2 · SERVICIOS -->
+<section class="scene" id="s-servicios" data-name="Servicios" data-hash="servicios" aria-label="Servicios" hidden>
+  <div class="glow t" data-z="0" id="svcGlow"></div>
+  <div class="inner"><div class="frame">
+    <div class="sec-head t" data-z=".2">
+      <div><div class="eyebrow">Servicios</div><h2 class="disp">De la idea a <em class="hl">producción</em>.</h2></div>
+      <p>Elige un servicio para ver cómo se ve en la práctica.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="tabs t" data-z=".4" role="tablist" aria-label="Servicios" id="tabs">
+        <button class="tab" role="tab" aria-selected="true" data-k="sw" style="--c:var(--signal)">
+          <span class="tab-top"><i></i><h3>Software a medida</h3></span>
+          <span class="tab-more"><div><p>Sistemas de gestión, SaaS, apps instalables y herramientas internas que automatizan tu negocio, con cuentas, roles y reportes.</p><span class="tags"><span>SaaS</span><span>PWA</span><span>Firebase</span><span>Next.js</span></span><span class="quote" data-quote="Software a medida">Cotizar esto →</span></div></span>
         </button>
-        <div class="form-success" id="formSuccess">
-          <span>✓</span> ¡Mensaje enviado! Te contactaremos pronto.
+        <button class="tab" role="tab" aria-selected="false" data-k="wb" style="--c:var(--violet)">
+          <span class="tab-top"><i></i><h3>Webs y tiendas</h3></span>
+          <span class="tab-more"><div><p>Desde una landing hasta un e-commerce completo, rápidos en el celular y optimizados para Google.</p><span class="tags"><span>Landing</span><span>E-commerce</span><span>SEO</span></span><span class="quote" data-quote="Web o tienda online">Cotizar esto →</span></div></span>
+        </button>
+        <button class="tab" role="tab" aria-selected="false" data-k="mt" style="--c:var(--online)">
+          <span class="tab-top"><i></i><h3>Mantenimiento</h3></span>
+          <span class="tab-more"><div><p>Monitoreo, actualizaciones de seguridad, respaldos y mejoras continuas para que tus sistemas sigan en línea.</p><span class="tags"><span>Soporte</span><span>Seguridad</span><span>Respaldos</span></span><span class="quote" data-quote="Mantenimiento">Cotizar esto →</span></div></span>
+        </button>
+      </div>
+      <div class="compo-box t" data-z=".8" id="compoBox" aria-hidden="true">
+        <div class="compo" id="compo">
+          <div class="set" data-set="sw">
+            <div class="card sw-a" data-z=".45"><div class="winbar"><i></i><i></i><i></i><span>panel.app</span></div>
+              <div class="app" style="--c:var(--signal);height:230px"><div class="app-side"><div class="logo"></div><span class="on"></span><span></span><span></span><span></span></div>
+              <div class="app-main"><div class="app-title">Panel de gestión</div><div class="app-sub">Clientes · pedidos · reportes</div>
+              <div class="kpis"><div><small>Pedidos</small><b>128</b></div><div><small>Clientes</small><b>64</b></div><div><small>Usuarios</small><b>12</b></div></div>
+              <svg class="spark" viewBox="0 0 300 84" preserveAspectRatio="none"><path d="M0 70 L40 60 L80 64 L120 44 L160 50 L200 30 L240 34 L300 16" fill="none" stroke="#F95A8A" stroke-width="2.5"/></svg></div></div></div>
+            <div class="card sw-b" data-z=".8"><pre><b>&gt;_</b> npm run build
+<span class="ok">✓</span> 0 errores · 3.2 s
+<span class="ok">✓</span> API lista en /v1
+<span class="ok">✓</span> publicado</pre></div>
+            <div class="chip sw-c" data-z="1.1"><i></i>API /v1 en línea</div>
+            <div class="chip sw-d" data-z="1">roles · admin · equipo</div>
+          </div>
+          <div class="set" data-set="wb" hidden>
+            <div class="card wb-a" data-z=".45"><div class="winbar"><i></i><i></i><i></i><span>tutienda.cl</span></div>
+              <div class="shop"><div class="hero-b">Colección de verano</div><div class="grid"><div></div><div></div><div></div></div></div></div>
+            <div class="card wb-b" data-z=".85"><div class="phone"><div class="ph-img"></div><div><div class="ph-t">Bolso urbano</div><div class="ph-p">$34.990</div></div><div class="ph-b">Agregar al carrito</div></div></div>
+            <div class="chip wb-c" data-z="1.15"><i style="background:var(--violet)"></i>+1 al carrito</div>
+            <div class="chip wb-d" data-z="1">SEO <b>✓</b> · responsive <b>✓</b></div>
+          </div>
+          <div class="set" data-set="mt" hidden>
+            <div class="card mt-a" data-z=".45"><div class="winbar"><i></i><i></i><i></i><span>monitoreo</span></div>
+              <div class="uptime"><h4>Disponibilidad · 30 días</h4><small>Cada barra es un día</small>
+              <div class="bars" id="bars"></div></div></div>
+            <div class="card mt-b" data-z=".8"><div class="alerts">
+              <div><i></i>Actualización de seguridad aplicada</div>
+              <div><i></i>Respaldo diario completado</div>
+              <div><i class="a"></i>Certificado SSL renovado</div></div></div>
+            <div class="chip mt-c" data-z="1.1"><i></i>todo en línea</div>
+            <div class="chip mt-d" data-z="1">respaldo 03:00 <b>✓</b></div>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
-  </section>
+  </div></div>
+</section>
 
-  <!-- ── MODAL ── -->
-  <script src="projects.js"></script>
-  <script src="script.js"></script>
-  <script type="module" src="firebase.js"></script>
+<!-- 3 · PORTAFOLIO -->
+<section class="scene" id="s-portafolio" data-name="Portafolio" data-hash="portafolio" aria-label="Portafolio" hidden>
+  <div class="glow t" data-z="0" id="pGlow"></div>
+  <div class="inner"><div class="frame">
+    <div class="sec-head t" data-z=".2" style="margin-bottom:6px">
+      <div><div class="eyebrow">Portafolio</div><h2 class="disp">Sistemas <em class="hl">en órbita</em>.</h2></div>
+      <div class="filters" id="filters" role="group" aria-label="Filtrar proyectos"></div>
+    </div>
+    <div class="arc t" data-z=".6" id="arc" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Proyectos. Usa las flechas izquierda y derecha."></div>
+    <div class="p-row t" data-z=".9">
+      <span class="counter"><b id="pIdx">01</b> / <span id="pTot">11</span></span>
+      <div class="p-info" aria-live="polite"><div class="p-swap" id="pSwap">
+        <span class="p-status st-live" id="pStatus"><i></i><span id="pStatusTxt">En producción</span></span>
+        <h3 class="p-name disp" id="pName"></h3>
+        <p class="p-desc" id="pDesc"></p>
+        <div class="p-stack" id="pStack"></div>
+        <div class="p-links" id="pLinks"></div>
+      </div></div>
+      <div style="display:flex;gap:10px"><button class="round" id="prevBtn" aria-label="Proyecto anterior">←</button><button class="round" id="nextBtn" aria-label="Proyecto siguiente">→</button></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 4 · PROCESO -->
+<section class="scene" id="s-proceso" data-name="Proceso" data-hash="proceso" aria-label="Proceso" hidden>
+  <div class="glow t" data-z="0"></div>
+  <div class="inner"><div class="frame">
+    <div class="sec-head t" data-z=".2">
+      <div><div class="eyebrow">Proceso</div><h2 class="disp">Cómo <em class="hl">trabajamos</em>.</h2></div>
+      <p>Arrastra el control por la línea para ver qué recibes en cada etapa.</p>
+    </div>
+    <div class="proc">
+      <div class="t" data-z=".45" id="procText">
+        <div class="proc-num" id="procNum"><b>0</b>1</div>
+        <h3 id="procTitle"></h3>
+        <p id="procDesc"></p>
+      </div>
+      <div class="deliv t" data-z=".8" id="deliv" aria-live="polite"></div>
+    </div>
+    <div class="track-wrap t" data-z="1">
+      <div class="track" id="track" role="slider" tabindex="0" aria-label="Etapa del proceso" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1">
+        <div class="rail"></div><div class="fill" id="fill"></div>
+        <span class="stop" style="left:0"></span><span class="stop" style="left:33.333%"></span><span class="stop" style="left:66.666%"></span><span class="stop" style="left:100%"></span>
+        <div class="handle" id="handle">↔</div>
+      </div>
+      <div class="labels" id="labels"><button>Descubrir</button><button>Diseñar</button><button>Construir</button><button>Operar</button></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 5 · CONTACTO -->
+<section class="scene" id="s-contacto" data-name="Contacto" data-hash="contacto" aria-label="Contacto" hidden>
+  <div class="glow t" data-z="0"></div>
+  <div class="inner"><div class="frame">
+    <div class="contact">
+      <div>
+        <div class="eyebrow t" data-z=".2">Contacto</div>
+        <h2 class="disp t" data-z=".35">¿Tu proyecto es el <em class="hl">siguiente</em>?</h2>
+        <p class="t" data-z=".5" style="color:var(--ink-2);max-width:440px;margin:0">Responde tres preguntas y te contestamos en menos de 24 horas con una propuesta inicial sin costo.</p>
+        <div class="t" data-z=".6">
+          <div class="mail"><code id="mailTxt">id.studio.tecserv@gmail.com</code><button type="button" id="copyMail">Copiar</button></div>
+          <p class="note">Chile · atención remota a todo el país · Lun–Vie 9:00–18:00</p>
+          <p class="foot">© <span id="year">2026</span> ID STUDIO — TECHNOLOGY SERVICES</p>
+        </div>
+      </div>
+      <div class="wizard t" data-z=".85" id="wizard">
+        <div class="w-top"><div class="w-steps" id="wSteps"><i class="on"></i><i></i><i></i><i></i></div><span class="w-count" id="wCount">PASO 1 DE 4</span></div>
+        <div class="w-body" id="wBody">
+          <div class="wstep" data-step="0">
+            <h3>¿Qué necesitas?</h3>
+            <div class="opts" role="radiogroup" aria-label="Tipo de proyecto" data-field="tipo">
+              <button class="opt" role="radio" aria-checked="false" data-v="Software a medida"><b>Software a medida</b><small>Sistema, SaaS o app interna</small></button>
+              <button class="opt" role="radio" aria-checked="false" data-v="Web o tienda online"><b>Web o tienda</b><small>Landing, sitio o e-commerce</small></button>
+              <button class="opt" role="radio" aria-checked="false" data-v="Mantenimiento"><b>Mantenimiento</b><small>Soporte de un sistema existente</small></button>
+              <button class="opt" role="radio" aria-checked="false" data-v="Otro / aún no sé"><b>Otro o no sé</b><small>Lo conversamos</small></button>
+            </div>
+          </div>
+          <div class="wstep" data-step="1" hidden>
+            <h3>¿Para cuándo lo necesitas?</h3>
+            <div class="opts" role="radiogroup" aria-label="Plazo" data-field="plazo">
+              <button class="opt" role="radio" aria-checked="false" data-v="Lo antes posible"><b>Lo antes posible</b><small>Es urgente</small></button>
+              <button class="opt" role="radio" aria-checked="false" data-v="En 1 a 3 meses"><b>En 1 a 3 meses</b><small>Tengo un plazo claro</small></button>
+              <button class="opt" role="radio" aria-checked="false" data-v="Sin apuro"><b>Sin apuro</b><small>Estoy planificando</small></button>
+              <button class="opt" role="radio" aria-checked="false" data-v="Aún no lo sé"><b>Aún no lo sé</b><small>Quiero orientación</small></button>
+            </div>
+          </div>
+          <div class="wstep" data-step="2" hidden>
+            <h3>¿Cómo te contactamos?</h3>
+            <div class="two">
+              <label for="fName">Nombre<input id="fName" autocomplete="name" placeholder="Tu nombre"></label>
+              <label for="fMail">Correo<input id="fMail" type="email" autocomplete="email" placeholder="tu@empresa.cl"></label>
+            </div>
+            <label for="fMsg">Cuéntanos brevemente<textarea id="fMsg" placeholder="Qué problema quieres resolver"></textarea></label>
+            <p class="err" id="wErr"></p>
+          </div>
+          <div class="wstep" data-step="3" hidden>
+            <h3>Revisa tu mensaje</h3>
+            <div class="summary" id="summary"></div>
+            <p class="ok-msg" id="wOk">En esta vista previa el formulario no envía. Copia el resumen y mándalo a nuestro correo.</p>
+          </div>
+        </div>
+        <div class="w-nav">
+          <button class="btn btn-ghost" id="wBack" disabled>← Atrás</button>
+          <button class="btn btn-primary" id="wNext" disabled>Siguiente <span class="arr">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+</main>
+
+<script src="projects.js"></script>
+<script src="script.js"></script>
+<script type="module" src="firebase.js"></script>
 </body>
 </html>
