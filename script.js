@@ -150,7 +150,7 @@ addEventListener('hashchange', () => { const i = fromHash(); if (i >= 0) go(i); 
     inicio: () => print('<span class="ok">✓ ya estás en inicio</span>'),
     servicios: () => nav(1, 'servicios'),
     portafolio: () => nav(2, 'portafolio'),
-    proyectos: () => { print('<span class="ok">8 en producción · 2 beta · 1 en desarrollo</span>'); print('<span class="dim">escribe "portafolio" para verlos</span>'); },
+    proyectos: () => { print('<span class="ok">9 en producción · 2 beta · 1 en desarrollo</span>'); print('<span class="dim">escribe "portafolio" para verlos</span>'); },
     proceso: () => nav(3, 'proceso'),
     contacto: () => nav(4, 'contacto'),
     limpiar: () => { lines.length = 0; out.innerHTML = ''; },
